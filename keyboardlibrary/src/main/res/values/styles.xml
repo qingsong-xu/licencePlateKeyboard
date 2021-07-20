@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme">
+        <item name="pwkInputStyle">@style/PWKInputViewStyle</item>
+    </style>
+    <!--输入组件整体样式设置-->
+    <style name="PWKInputViewBaseStyle">
+        <item name="android:showDividers">middle</item>
+    </style>
+    <!--合并在一起的组件样式-->
+    <style name="PWKInputViewStyle_MIXED" parent="PWKInputViewBaseStyle">
+        <item name="android:background">@drawable/pwk_input_item_border_gray</item>
+        <item name="android:divider">@drawable/pwk_input_divider_line</item>
+        <item name="pwkSelectedDrawable">com.parkingwang.keyboard.view.SelectedDrawable</item>
+    </style>
+    <!--输入框整体样式-->
+    <style name="PWKInputViewStyle" parent="PWKInputViewStyle_MIXED" />
+
+    <style name="myInputView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+</resources>
