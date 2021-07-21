@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.view.Window;
 
 import androidx.annotation.ColorInt;
+import androidx.fragment.app.Fragment;
 
 import cn.qingsong.car.keyboardlibrary.engine.KeyboardEngine;
 import cn.qingsong.car.keyboardlibrary.view.InputView;
@@ -49,8 +50,13 @@ public class PopupKeyboard {
         attach(inputView, dialog.getWindow());
     }
 
+//    public void attach(InputView inputView, final Fragment fragment) {
+//        isDialog = true;
+//        attach(inputView, fragment.getWindow());
+//    }
+
     private void attach(InputView inputView, final Window window) {
-         if (mController == null) {
+        if (mController == null) {
             mController = KeyboardInputController
                     .with(mKeyboardView, inputView);
             mController.useDefaultMessageHandler();
