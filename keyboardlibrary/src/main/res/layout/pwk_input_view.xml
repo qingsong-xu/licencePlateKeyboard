@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <LinearLayout style="@style/myInputView">
+    <LinearLayout
+        style="@style/myInputView"
+        android:layout_marginLeft="0dp">
 
         <TextView style="@style/myInputView.upside" />
 
@@ -13,7 +15,6 @@
             style="@style/myInputView.underpart"
             android:layout_gravity="center_vertical"
             android:background="@drawable/car_province_bg_selector"
-            android:text="贵"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -24,12 +25,11 @@
         <TextView
             android:id="@+id/et_car_license_inputbox2"
             style="@style/myInputView.underpart"
-            android:text="0"
             android:background="@drawable/car_bg_selector" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="20dp"
+        android:layout_width="10dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -108,7 +108,7 @@
     <LinearLayout
         android:id="@+id/llEnergy"
         style="@style/myInputView"
-        android:orientation="vertical">
+        android:layout_marginRight="0dp">
 
         <TextView
             style="@style/myInputView.upside"

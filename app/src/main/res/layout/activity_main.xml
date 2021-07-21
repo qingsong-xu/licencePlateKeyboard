@@ -28,11 +28,11 @@
 
     <cn.qingsong.car.keyboardlibrary.view.InputView
         android:id="@+id/inputView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        app:pwkInputTextSize="16sp"
-        />
+        android:background="@android:color/holo_red_dark"
+        app:pwkInputTextSize="16sp" />
 
     <Button
         android:id="@+id/showDialog"
