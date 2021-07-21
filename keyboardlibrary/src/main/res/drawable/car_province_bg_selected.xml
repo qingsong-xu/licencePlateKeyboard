@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_province" />
+    <item>
+        <shape>
+            <stroke
+                android:width="2dp"
+                android:color="@color/selected_blue" />
+            <corners android:radius="1dp" />
+        </shape>
+    </item>
+
+</layer-list>
+

@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         //隐藏确定键
         mPopupKeyboard.getKeyboardEngine().setHideOKKey(false);
         mPopupKeyboard.getKeyboardEngine().setOkEnabled(true);
+        mPopupKeyboard.getKeyboardEngine().setLocalProvinceName("贵州省");
         // KeyboardInputController提供一个默认实现的新能源车牌锁定按钮
         mPopupKeyboard.getController()
                 .setDebugEnabled(true);

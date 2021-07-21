@@ -21,5 +21,27 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginLeft">2.5dp</item>
+        <item name="android:layout_marginRight">2.5dp</item>
+        <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="myInputView.upside">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="myInputView.underpart">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:paddingTop">9dp</item>
+        <item name="android:paddingBottom">9dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/color_333</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/car_bg_selector</item>
+    </style>
+
 </resources>

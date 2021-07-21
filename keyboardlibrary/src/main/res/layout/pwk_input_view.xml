@@ -1,188 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout style="@style/myInputView">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/dot_black"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:visibility="invisible" />
+        <TextView style="@style/myInputView.upside" />
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="新能源"
-            android:textColor="#5AC40B"
-            android:textSize="11sp" />
+            android:id="@+id/et_car_license_inputbox1"
+            style="@style/myInputView.underpart"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/car_province_bg_selector"
+            android:text="贵"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
+    <LinearLayout style="@style/myInputView">
+
+        <TextView style="@style/myInputView.upside" />
+
+        <TextView
+            android:id="@+id/et_car_license_inputbox2"
+            style="@style/myInputView.underpart"
+            android:text="0"
+            android:background="@drawable/car_bg_selector" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="20dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/et_car_license_inputbox1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@drawable/bg_province"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+        <TextView style="@style/myInputView.upside" />
 
-        <Button
-            android:id="@+id/et_car_license_inputbox2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+        <LinearLayout
+            style="@style/myInputView.underpart"
+            android:background="@android:color/transparent"
+            android:gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/dot_black" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dot_black" />
+        </LinearLayout>
+    </LinearLayout>
 
-        <Button
+    <LinearLayout style="@style/myInputView">
+
+        <TextView style="@style/myInputView.upside" />
+
+        <TextView
             android:id="@+id/et_car_license_inputbox3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+            style="@style/myInputView.underpart"
+            android:background="@drawable/car_bg_selector" />
+    </LinearLayout>
 
-        <Button
+    <LinearLayout
+        style="@style/myInputView"
+        android:orientation="vertical">
+
+        <TextView style="@style/myInputView.upside" />
+
+        <TextView
             android:id="@+id/et_car_license_inputbox4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+            style="@style/myInputView.underpart"
+            android:background="@drawable/car_bg_selector" />
+    </LinearLayout>
 
-        <Button
+    <LinearLayout
+        style="@style/myInputView"
+        android:orientation="vertical">
+
+        <TextView style="@style/myInputView.upside" />
+
+        <TextView
             android:id="@+id/et_car_license_inputbox5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+            style="@style/myInputView.underpart"
+            android:background="@drawable/car_bg_selector" />
+    </LinearLayout>
 
-        <Button
+    <LinearLayout
+        style="@style/myInputView"
+        android:orientation="vertical">
+
+        <TextView style="@style/myInputView.upside" />
+
+        <TextView
             android:id="@+id/et_car_license_inputbox6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+            style="@style/myInputView.underpart"
+            android:background="@drawable/car_bg_selector" />
+    </LinearLayout>
 
-        <Button
+    <LinearLayout
+        style="@style/myInputView"
+        android:orientation="vertical">
+
+        <TextView style="@style/myInputView.upside" />
+
+        <TextView
             android:id="@+id/et_car_license_inputbox7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+            style="@style/myInputView.underpart"
+            android:background="@drawable/car_bg_selector" />
+    </LinearLayout>
 
-        <Button
+    <LinearLayout
+        android:id="@+id/llEnergy"
+        style="@style/myInputView"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/myInputView.upside"
+            android:text="新能源"
+            android:textColor="@color/color_energy" />
+
+        <TextView
             android:id="@+id/et_car_license_inputbox8"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/car_energy_bg_selector"
-            android:gravity="center"
-            android:textColor="@color/color_333"
-            android:textSize="16sp" />
+            style="@style/myInputView.underpart"
+            android:background="@drawable/car_energy_bg_selector" />
     </LinearLayout>
 </LinearLayout>

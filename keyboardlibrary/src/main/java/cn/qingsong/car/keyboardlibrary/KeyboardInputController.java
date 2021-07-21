@@ -27,7 +27,7 @@ public class KeyboardInputController {
 
     private final Set<OnInputChangedListener> mOnInputChangedListeners = new LinkedHashSet<>(4);
 
-    private boolean mLockedOnNewEnergyType = false;
+    private boolean mLockedOnNewEnergyType = true;
     private boolean mDebugEnabled = true;
     private boolean mSwitchVerify = true;
     private MessageHandler mMessageHandler;

@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import cn.qingsong.car.keyboardlibrary.R;
  */
 abstract class FieldViewGroup {
 
-    private static final String TAG = "InputView.ButtonGroup";
+    private static final String TAG = "InputView.TextViewGroup";
 
-    private final Button[] mFieldViews = new Button[8];
+    private final TextView[] mFieldViews = new TextView[8];
 
     public FieldViewGroup() {
         final int[] resIds = new int[]{
@@ -39,11 +39,11 @@ abstract class FieldViewGroup {
         changeTo8Fields();
     }
 
-    protected abstract Button findViewById(int id);
+    protected abstract TextView findViewById(int id);
 
     public void setTextToFields(String text) {
         // cleanup
-        for (Button f : mFieldViews) {
+        for (TextView f : mFieldViews) {
             f.setText(null);
         }
 
@@ -54,7 +54,7 @@ abstract class FieldViewGroup {
             changeTo7Fields();
         }
         // 显示到对应键位
-        final Button[] fields = getAvailableFields();
+        final TextView[] fields = getAvailableFields();
         for (int i = 0; i < fields.length; i++) {
             final String txt;
             if (i < chars.length) {
@@ -66,20 +66,20 @@ abstract class FieldViewGroup {
         }
     }
 
-    public Button[] getAvailableFields() {
-        final List<Button> output = new ArrayList<>(8);
+    public TextView[] getAvailableFields() {
+        final List<TextView> output = new ArrayList<>(8);
         final int lastIndex = mFieldViews.length - 1;
-        Button fieldView;
+        TextView fieldView;
         for (int i = 0; i < mFieldViews.length; i++) {
             fieldView = mFieldViews[i];
             if (i != lastIndex || fieldView.getVisibility() == View.VISIBLE) {
                 output.add(fieldView);
             }
         }
-        return output.toArray(new Button[output.size()]);
+        return output.toArray(new TextView[output.size()]);
     }
 
-    public Button getFieldAt(int index) {
+    public TextView getFieldAt(int index) {
         return mFieldViews[index];
     }
 
@@ -87,7 +87,7 @@ abstract class FieldViewGroup {
         if (mFieldViews[7].getVisibility() != View.VISIBLE) {
             return false;
         }
-        mFieldViews[7].setVisibility(View.GONE);
+        mFieldViews[7].getRootView().findViewById(R.id.llEnergy).setVisibility(View.GONE);
         mFieldViews[7].setText(null);
         return true;
     }
@@ -96,12 +96,12 @@ abstract class FieldViewGroup {
         if (mFieldViews[7].getVisibility() == View.VISIBLE) {
             return false;
         }
-        mFieldViews[7].setVisibility(View.VISIBLE);
+        mFieldViews[7].getRootView().findViewById(R.id.llEnergy).setVisibility(View.VISIBLE);
         mFieldViews[7].setText(null);
         return true;
     }
 
-    public Button getLastField() {
+    public TextView getLastField() {
         if (mFieldViews[7].getVisibility() == View.VISIBLE) {
             return mFieldViews[7];
         } else {
@@ -109,8 +109,8 @@ abstract class FieldViewGroup {
         }
     }
 
-    public Button getFirstSelectedFieldOrNull() {
-        for (Button field : getAvailableFields()) {
+    public TextView getFirstSelectedFieldOrNull() {
+        for (TextView field : getAvailableFields()) {
             if (field.isSelected()) {
                 return field;
             }
@@ -118,8 +118,8 @@ abstract class FieldViewGroup {
         return null;
     }
 
-    public Button getLastFilledFieldOrNull() {
-        final Button[] fields = getAvailableFields();
+    public TextView getLastFilledFieldOrNull() {
+        final TextView[] fields = getAvailableFields();
         for (int i = fields.length - 1; i >= 0; i--) {
             if (!TextUtils.isEmpty(fields[i].getText())) {
                 return fields[i];
@@ -128,10 +128,10 @@ abstract class FieldViewGroup {
         return null;
     }
 
-    public Button getFirstEmptyField() {
-        final Button[] fields = getAvailableFields();
-        Button out = fields[0];
-        for (Button field : fields) {
+    public TextView getFirstEmptyField() {
+        final TextView[] fields = getAvailableFields();
+        TextView out = fields[0];
+        for (TextView field : fields) {
             out = field;
             final CharSequence keyTxt = field.getText();
             if (TextUtils.isEmpty(keyTxt)) {
@@ -142,8 +142,8 @@ abstract class FieldViewGroup {
         return out;
     }
 
-    public int getNextIndexOfField(Button target) {
-        final Button[] fields = getAvailableFields();
+    public int getNextIndexOfField(TextView target) {
+        final TextView[] fields = getAvailableFields();
         for (int i = 0; i < fields.length; i++) {
             if (target == fields[i]) {
                 return Math.min(fields.length - 1, i + 1);
@@ -153,7 +153,7 @@ abstract class FieldViewGroup {
     }
 
     public boolean isAllFieldsFilled() {
-        for (Button field : getAvailableFields()) {
+        for (TextView field : getAvailableFields()) {
             if (TextUtils.isEmpty(field.getText())) {
                 return false;
             }
@@ -163,20 +163,20 @@ abstract class FieldViewGroup {
 
     public String getText() {
         final StringBuilder sb = new StringBuilder();
-        for (Button field : getAvailableFields()) {
+        for (TextView field : getAvailableFields()) {
             sb.append(field.getText());
         }
         return sb.toString();
     }
 
     public void setupAllFieldsTextSize(float size) {
-        for (Button field : mFieldViews) {
+        for (TextView field : mFieldViews) {
             field.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         }
     }
 
     public void setupAllFieldsOnClickListener(View.OnClickListener listener) {
-        for (Button field : mFieldViews) {
+        for (TextView field : mFieldViews) {
             field.setOnClickListener(listener);
         }
     }

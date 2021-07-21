@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.ColorInt;
@@ -42,7 +42,7 @@ public class InputView extends LinearLayout {
     private final OnClickListener mOnFieldViewClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            final Button field = (Button) v;
+            final TextView field = (TextView) v;
             final ClickMeta clickMeta = getClickMeta(field);
             Log.d(TAG, "当前点击信息: " + clickMeta);
 
@@ -82,7 +82,7 @@ public class InputView extends LinearLayout {
         inflate(context, R.layout.pwk_input_view, this);
         mFieldViewGroup = new FieldViewGroup() {
             @Override
-            protected Button findViewById(int id) {
+            protected TextView findViewById(int id) {
                 return InputView.this.findViewById(id);
             }
         };
@@ -91,7 +91,7 @@ public class InputView extends LinearLayout {
 
     private void onInited(Context context, AttributeSet attrs, int defStyleAttr) {
         final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.InputView, defStyleAttr, 0);
-        final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 0);
+        final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 16);
         final String drawableClassName = ta.getString(R.styleable.InputView_pwkSelectedDrawable);
         final int itemBorderSelectedColor = ta.getColor(R.styleable.InputView_pwkItemBorderSelectedColor,
                 ContextCompat.getColor(context, R.color.pwk_primary_color));
@@ -101,7 +101,7 @@ public class InputView extends LinearLayout {
 
         mFieldViewGroup.setupAllFieldsTextSize(textSize);
         mFieldViewGroup.setupAllFieldsOnClickListener(mOnFieldViewClickListener);
-        mFieldViewGroup.changeTo7Fields();
+        mFieldViewGroup.changeTo8Fields();
     }
 
     private void initSelectedDrawable(String className, int selectedColor) {
@@ -140,7 +140,7 @@ public class InputView extends LinearLayout {
      * @param text 文本字符
      */
     public void updateSelectedCharAndSelectNext(final String text) {
-        final Button selected = mFieldViewGroup.getFirstSelectedFieldOrNull();
+        final TextView selected = mFieldViewGroup.getFirstSelectedFieldOrNull();
         if (selected != null) {
             selected.setText(text);
             performNextFieldViewBy(selected);
@@ -151,7 +151,7 @@ public class InputView extends LinearLayout {
      * 从最后一位开始删除
      */
     public void removeLastCharOfNumber() {
-        final Button last = mFieldViewGroup.getLastFilledFieldOrNull();
+        final TextView last = mFieldViewGroup.getLastFilledFieldOrNull();
         if (last != null) {
             last.setText(null);
             performFieldViewSetToSelected(last);
@@ -209,7 +209,7 @@ public class InputView extends LinearLayout {
      * 如果全部为空，则选中第1个输入框。
      */
     public void performLastPendingFieldView() {
-        final Button field = mFieldViewGroup.getLastFilledFieldOrNull();
+        final TextView field = mFieldViewGroup.getLastFilledFieldOrNull();
         if (field != null) {
             performNextFieldViewBy(field);
         } else {
@@ -224,7 +224,7 @@ public class InputView extends LinearLayout {
     public void performNextFieldView() {
         final ClickMeta meta = getClickMeta(null);
         if (meta.selectedIndex >= 0) {
-            final Button current = mFieldViewGroup.getFieldAt(meta.selectedIndex);
+            final TextView current = mFieldViewGroup.getFieldAt(meta.selectedIndex);
             if (!TextUtils.isEmpty(current.getText())) {
                 performNextFieldViewBy(current);
             } else {
@@ -256,7 +256,7 @@ public class InputView extends LinearLayout {
             changed = mFieldViewGroup.changeTo7Fields();
         }
         if (changed) {
-            final Button field = mFieldViewGroup.getFirstEmptyField();
+            final TextView field = mFieldViewGroup.getFirstEmptyField();
             if (field != null) {
                 Log.d(TAG, "[@@ FieldChanged @@] FirstEmpty.tag: " + field.getTag());
                 setFieldViewSelected(field);
@@ -278,7 +278,7 @@ public class InputView extends LinearLayout {
         return this;
     }
 
-    private void performFieldViewSetToSelected(Button target) {
+    private void performFieldViewSetToSelected(TextView target) {
         Log.d(TAG, "[== FastPerform ==] Btn.text: " + target.getText());
         // target.performClick();
         // 自动触发的，不要使用Android内部处理，太慢了。
@@ -286,25 +286,25 @@ public class InputView extends LinearLayout {
         setFieldViewSelected(target);
     }
 
-    private void performNextFieldViewBy(Button current) {
+    private void performNextFieldViewBy(TextView current) {
         final int nextIndex = mFieldViewGroup.getNextIndexOfField(current);
         Log.d(TAG, "[>> NextPerform >>] Next.Btn.idx: " + nextIndex);
         performFieldViewSetToSelected(mFieldViewGroup.getFieldAt(nextIndex));
     }
 
-    private void setFieldViewSelected(Button target) {
-        for (Button btn : mFieldViewGroup.getAvailableFields()) {
+    private void setFieldViewSelected(TextView target) {
+        for (TextView btn : mFieldViewGroup.getAvailableFields()) {
             btn.setSelected((btn == target));
         }
         invalidate();
     }
 
-    private ClickMeta getClickMeta(Button clicked) {
+    private ClickMeta getClickMeta(TextView clicked) {
         int selectedIndex = -1;
         int currentIndex = -1;
-        final Button[] fields = mFieldViewGroup.getAvailableFields();
+        final TextView[] fields = mFieldViewGroup.getAvailableFields();
         for (int i = 0; i < fields.length; i++) {
-            final Button field = fields[i];
+            final TextView field = fields[i];
             if (currentIndex < 0 && field == clicked) {
                 currentIndex = i;
             }
