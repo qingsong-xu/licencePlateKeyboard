@@ -50,11 +50,6 @@ public class PopupKeyboard {
         attach(inputView, dialog.getWindow());
     }
 
-//    public void attach(InputView inputView, final Fragment fragment) {
-//        isDialog = true;
-//        attach(inputView, fragment.getWindow());
-//    }
-
     private void attach(InputView inputView, final Window window) {
         if (mController == null) {
             mController = KeyboardInputController

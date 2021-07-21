@@ -51,7 +51,6 @@ public class PopupHelper {
                 params.gravity = Gravity.BOTTOM;
                 if (belowFirstView) {
 //                    params.topMargin = ((ViewGroup) rootView).getChildAt(0).getHeight();
-                    params.topMargin = 300;
                 }
                 ((ViewGroup) rootView).addView(keyboardWrapper, params);
             }

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/rlContainer"
         android:layout_width="320dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:background="@color/white">
 
