@@ -42,29 +42,38 @@ public class InputView extends LinearLayout {
     private final OnClickListener mOnFieldViewClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            final TextView field = (TextView) v;
+            final TextView field = mFieldViewGroup.getFirstEmptyField();
             final ClickMeta clickMeta = getClickMeta(field);
-            Log.d(TAG, "当前点击信息: " + clickMeta);
-
-            final int numberLength = mFieldViewGroup.getText().length();
-            // 空车牌只能点击第一个
-            if (numberLength == 0 && clickMeta.clickIndex != 0) {
-                return;
-            }
-            // 不可大于车牌长度
-            if (clickMeta.clickIndex > numberLength) {
-                return;
-            }
-
-            // 点击位置是否变化
-            if (clickMeta.clickIndex != clickMeta.selectedIndex) {
-                setFieldViewSelected(field);
-            }
-
+            Log.d(TAG, "设置点击信息: " + clickMeta);
+            setFieldViewSelected(field);
             // 触发选中事件
             for (OnFieldViewSelectedListener listener : mOnFieldViewSelectedListeners) {
                 listener.onSelectedAt(clickMeta.clickIndex);
             }
+
+//            final TextView field = (TextView) v;
+//            final ClickMeta clickMeta = getClickMeta(field);
+//            Log.d(TAG, "当前点击信息: " + clickMeta);
+//
+//            final int numberLength = mFieldViewGroup.getText().length();
+//            // 空车牌只能点击第一个
+//            if (numberLength == 0 && clickMeta.clickIndex != 0) {
+//                return;
+//            }
+//            // 不可大于车牌长度
+//            if (clickMeta.clickIndex > numberLength) {
+//                return;
+//            }
+//
+//            // 点击位置是否变化
+//            if (clickMeta.clickIndex != clickMeta.selectedIndex) {
+//                setFieldViewSelected(field);
+//            }
+//
+//            // 触发选中事件
+//            for (OnFieldViewSelectedListener listener : mOnFieldViewSelectedListeners) {
+//                listener.onSelectedAt(clickMeta.clickIndex);
+//            }
 
         }
     };
