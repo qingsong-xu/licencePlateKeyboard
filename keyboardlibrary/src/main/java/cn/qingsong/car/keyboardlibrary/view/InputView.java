@@ -100,7 +100,7 @@ public class InputView extends LinearLayout {
 
     private void onInited(Context context, AttributeSet attrs, int defStyleAttr) {
         final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.InputView, defStyleAttr, 0);
-        final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 16);
+        final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 9);
         final String drawableClassName = ta.getString(R.styleable.InputView_pwkSelectedDrawable);
         final int itemBorderSelectedColor = ta.getColor(R.styleable.InputView_pwkItemBorderSelectedColor,
                 ContextCompat.getColor(context, R.color.pwk_primary_color));

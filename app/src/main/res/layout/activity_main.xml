@@ -4,34 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etPlate"
-        android:layout_width="300dp"
-        android:layout_height="40dp" />
-
     <TextView
-        android:id="@+id/showFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:background="#3D90FF"
-        android:paddingLeft="16dp"
-        android:paddingTop="8dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="8dp"
-        android:text="fragment中的车牌输入框"
-        android:textColor="@color/white" />
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="普通样式(基础样式)" />
 
     <cn.qingsong.car.keyboardlibrary.view.InputView
         android:id="@+id/inputView"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        app:pwkInputTextSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="新能源样式(公司样式)" />
+
+    <cn.qingsong.car.keyboardlibrary.view.InputView
+        android:id="@+id/inputView1"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        app:pwkInputTextSize="16sp" />
+        app:pwkInputTextSize="16sp"
+        app:pwkSelectedDrawable="cn.qingsong.car.keyboardlibrary.view.SelectedDrawable" />
 
     <Button
         android:id="@+id/showDialog"

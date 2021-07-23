@@ -12,7 +12,7 @@
     <style name="PWKInputViewStyle_MIXED" parent="PWKInputViewBaseStyle">
         <item name="android:background">@drawable/pwk_input_item_border_gray</item>
         <item name="android:divider">@drawable/pwk_input_divider_line</item>
-        <item name="pwkSelectedDrawable">com.parkingwang.keyboard.view.SelectedDrawable</item>
+        <item name="pwkSelectedDrawable">cn.qingsong.car.keyboardlibrary.view.SelectedDrawable</item>
     </style>
     <!--输入框整体样式-->
     <style name="PWKInputViewStyle" parent="PWKInputViewStyle_MIXED" />

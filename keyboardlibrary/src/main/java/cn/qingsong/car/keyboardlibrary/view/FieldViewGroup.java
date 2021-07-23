@@ -169,6 +169,11 @@ abstract class FieldViewGroup {
         return sb.toString();
     }
 
+    /**
+     * 设置文字大小，单位sp
+     *
+     * @param size
+     */
     public void setupAllFieldsTextSize(float size) {
         for (TextView field : mFieldViews) {
             field.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);

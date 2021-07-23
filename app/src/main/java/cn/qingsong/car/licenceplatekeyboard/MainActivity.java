@@ -1,43 +1,28 @@
 package cn.qingsong.car.licenceplatekeyboard;
 
-import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.View;
-
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.qingsong.car.keyboardlibrary.KeyboardInputController;
 import cn.qingsong.car.keyboardlibrary.OnInputChangedListener;
 import cn.qingsong.car.keyboardlibrary.PopupKeyboard;
 import cn.qingsong.car.keyboardlibrary.view.InputView;
 import cn.qingsong.car.licenceplatekeyboard.view.MyDialog;
 
 public class MainActivity extends AppCompatActivity {
-
     @BindView(R.id.showDialog)
     Button showDialog;
 
-    @BindView(R.id.showFragment)
-    TextView showFragment;
-
-    private MyDialog dialog;
-
     @BindView(R.id.inputView)
     InputView inputView;
+
+    private MyDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
