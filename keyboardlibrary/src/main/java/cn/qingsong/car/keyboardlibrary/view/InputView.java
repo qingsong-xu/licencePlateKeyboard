@@ -99,7 +99,7 @@ public class InputView extends ConstraintLayout {
         final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 9);
         int textColor = ta.getColor(R.styleable.InputView_pwkInputTextColor, Color.parseColor("#333333"));
         int provinceTextColor = ta.getColor(R.styleable.InputView_pwkProvinceTextColor, textColor);
-        int energyTextColor = ta.getColor(R.styleable.InputView_pwkInputTextColor, textColor);
+        int energyTextColor = ta.getColor(R.styleable.InputView_pwkEnergyTextColor, textColor);
         //
         mSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkItemSelectedDrawable);
         mUnSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkItemUnSelectedDrawable);
