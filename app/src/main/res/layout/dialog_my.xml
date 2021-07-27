@@ -6,21 +6,52 @@
     android:background="@android:color/transparent"
     android:gravity="center">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rlContainer"
-        android:layout_width="320dp"
-        android:layout_height="150dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="普通样式(基础样式)" />
 
         <cn.qingsong.car.keyboardlibrary.view.InputView
             android:id="@+id/inputView"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
+            android:layout_width="160dp"
+            android:layout_height="35dp"
+            android:background="@android:color/darker_gray"
             app:pwkInputTextSize="16sp" />
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="新能源样式(公司样式)" />
+
+        <cn.qingsong.car.keyboardlibrary.view.InputView
+            android:id="@+id/inputView1"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            app:pwkEnergyLabelVisible="visible"
+            app:pwkEnergySelectedDrawable="@drawable/car_energy_bg_selected"
+            app:pwkEnergyUnSelectedDrawable="@drawable/car_energy_bg_normal"
+            app:pwkInputTextSize="16sp"
+            app:pwkItemPadding="2dp"
+            app:pwkItemSelectedDrawable="@drawable/car_bg_selected"
+            app:pwkItemUnSelectedDrawable="@drawable/car_bg_normal"
+            app:pwkProvinceSelectedDrawable="@drawable/car_province_bg_selected"
+            app:pwkProvinceUnSelectedDrawable="@drawable/bg_province" />
+
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/close"

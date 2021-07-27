@@ -27,6 +27,9 @@ public class MyDialog extends DialogFragment {
     @BindView(R.id.inputView)
     InputView inputView;
 
+    @BindView(R.id.inputView1)
+    InputView inputView1;
+
     @BindView(R.id.close)
     ImageView ivClose;
 
@@ -61,11 +64,12 @@ public class MyDialog extends DialogFragment {
         window.setAttributes(lp);
         window.setBackgroundDrawable(new ColorDrawable());
         unbinder = ButterKnife.bind(this, view);
-        initView();
+        initKeyBoard(inputView);
+        initKeyBoard(inputView1);
         return view;
     }
 
-    private void initView() {
+    private void initKeyBoard(InputView inputView) {
         // 创建弹出键盘
         final PopupKeyboard mPopupKeyboard = new PopupKeyboard(getActivity());
         // 弹出键盘内部包含一个KeyboardView，在此绑定输入两者关联。

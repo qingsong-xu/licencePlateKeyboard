@@ -19,11 +19,14 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.showDialog)
     Button showDialog;
 
-//    @BindView(R.id.inputView)
-//    InputView inputView;
+    @BindView(R.id.inputView)
+    InputView inputView;
 
     @BindView(R.id.inputView1)
     InputView inputView1;
+
+    @BindView(R.id.inputView2)
+    InputView inputView2;
 
     private MyDialog dialog;
 
@@ -32,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        initView(inputView);
+        initView(inputView);
         initView(inputView1);
+        initView(inputView2);
     }
 
     /**
