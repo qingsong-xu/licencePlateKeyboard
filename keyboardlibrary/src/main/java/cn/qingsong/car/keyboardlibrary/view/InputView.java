@@ -3,16 +3,21 @@ package cn.qingsong.car.keyboardlibrary.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.StateSet;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import java.util.HashMap;
@@ -24,9 +29,10 @@ import cn.qingsong.car.keyboardlibrary.R;
 /**
  * @author 陈哈哈 (yoojiachen@gmail.com)
  */
-public class InputView extends LinearLayout {
+public class InputView extends ConstraintLayout {
 
     private static final String TAG = InputView.class.getName();
+    private TextView energyLabel;
 
     private static final String KEY_INIT_NUMBER = "pwk.keyboard.key:init.number";
 
@@ -50,36 +56,24 @@ public class InputView extends LinearLayout {
             for (OnFieldViewSelectedListener listener : mOnFieldViewSelectedListeners) {
                 listener.onSelectedAt(clickMeta.clickIndex);
             }
-
-//            final TextView field = (TextView) v;
-//            final ClickMeta clickMeta = getClickMeta(field);
-//            Log.d(TAG, "当前点击信息: " + clickMeta);
-//
-//            final int numberLength = mFieldViewGroup.getText().length();
-//            // 空车牌只能点击第一个
-//            if (numberLength == 0 && clickMeta.clickIndex != 0) {
-//                return;
-//            }
-//            // 不可大于车牌长度
-//            if (clickMeta.clickIndex > numberLength) {
-//                return;
-//            }
-//
-//            // 点击位置是否变化
-//            if (clickMeta.clickIndex != clickMeta.selectedIndex) {
-//                setFieldViewSelected(field);
-//            }
-//
-//            // 触发选中事件
-//            for (OnFieldViewSelectedListener listener : mOnFieldViewSelectedListeners) {
-//                listener.onSelectedAt(clickMeta.clickIndex);
-//            }
-
         }
     };
 
     @Nullable
-    private SelectedDrawable mSelectedDrawable;
+    private Drawable mSelectedDrawable;
+    @Nullable
+    private Drawable mUnSelectedDrawable;
+    @Nullable
+    private Drawable mProvinceSelectedDrawable;
+    @Nullable
+    private Drawable mProvinceUnSelectedDrawable;
+    @Nullable
+    private Drawable mEnergySelectedDrawable;
+    @Nullable
+    private Drawable mEnergyUnSelectedDrawable;
+
+    private float padding;
+    private int labelVisible;
 
     public InputView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, R.attr.pwkInputStyle);
@@ -89,58 +83,44 @@ public class InputView extends LinearLayout {
         super(context, attrs, defStyleAttr);
 
         inflate(context, R.layout.pwk_input_view, this);
+        setBackgroundColor(Color.parseColor("#00000000"));
         mFieldViewGroup = new FieldViewGroup() {
             @Override
             protected TextView findViewById(int id) {
                 return InputView.this.findViewById(id);
             }
         };
+        energyLabel = findViewById(R.id.tvEnergyLabel);
         onInited(context, attrs, defStyleAttr);
     }
 
     private void onInited(Context context, AttributeSet attrs, int defStyleAttr) {
         final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.InputView, defStyleAttr, 0);
         final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 9);
-        final String drawableClassName = ta.getString(R.styleable.InputView_pwkSelectedDrawable);
-        final int itemBorderSelectedColor = ta.getColor(R.styleable.InputView_pwkItemBorderSelectedColor,
-                ContextCompat.getColor(context, R.color.pwk_primary_color));
+        //
+        mSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkItemSelectedDrawable);
+        mUnSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkItemUnSelectedDrawable);
+        //
+        mProvinceSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkProvinceSelectedDrawable);
+        mProvinceUnSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkProvinceUnSelectedDrawable);
+        //
+        mEnergySelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkEnergySelectedDrawable);
+        mEnergyUnSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkEnergyUnSelectedDrawable);
+        padding = ta.getDimension(R.styleable.InputView_pwkItemPadding, 0);
+        labelVisible = ta.getInt(R.styleable.InputView_pwkEnergyLabelVisible, 0);
         ta.recycle();
-
-        initSelectedDrawable(drawableClassName, itemBorderSelectedColor);
-
+        //
+        if (labelVisible == 0) {
+            energyLabel.setVisibility(GONE);
+        } else if (labelVisible == 1) {
+            energyLabel.setVisibility(VISIBLE);
+        }
+        //
         mFieldViewGroup.setupAllFieldsTextSize(textSize);
         mFieldViewGroup.setupAllFieldsOnClickListener(mOnFieldViewClickListener);
         mFieldViewGroup.changeTo8Fields();
-    }
-
-    private void initSelectedDrawable(String className, int selectedColor) {
-        if (TextUtils.isEmpty(className)) {
-            return;
-        }
-        try {
-            Class cls = Class.forName(className);
-            if (!SelectedDrawable.class.isAssignableFrom(cls)) {
-                return;
-            }
-            mSelectedDrawable = (SelectedDrawable) cls.newInstance();
-            mSelectedDrawable.setColor(selectedColor);
-            mSelectedDrawable.setWidth(getResources().getDimensionPixelSize(R.dimen.pwk_input_item_highlight_border_width));
-            mSelectedDrawable.setRadius(getResources().getDimensionPixelSize(R.dimen.pwk_input_item_radius));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setItemBorderSelectedColor(@ColorInt int itemBorderSelectedColor) {
-        if (mSelectedDrawable != null) {
-            mSelectedDrawable.setColor(itemBorderSelectedColor);
-        }
-        invalidate();
-    }
-
-    @Nullable
-    public SelectedDrawable getSelectedDrawable() {
-        return mSelectedDrawable;
+        //
+        mFieldViewGroup.setHorizontalPadding(padding);
     }
 
     /**
@@ -334,27 +314,43 @@ public class InputView extends LinearLayout {
         if (mSelectedDrawable == null) {
             return;
         }
-        final int count = getChildCount();
-        View lastShown = null;
+
+        final int count = mFieldViewGroup.getCount();
         View selected;
-        for (int i = count - 1; i >= 0; i--) {
-            selected = getChildAt(i);
-            if (lastShown == null && selected.isShown()) {
-                lastShown = selected;
-            }
+        for (int i = 0; i < count; i++) {
+            selected = mFieldViewGroup.getFieldAt(i);
+
             if (selected.getVisibility() == View.VISIBLE && selected.isSelected()) {
-                if (selected == lastShown) {
-                    mSelectedDrawable.setPosition(SelectedDrawable.Position.LAST);
-                } else if (i == 0) {
-                    mSelectedDrawable.setPosition(SelectedDrawable.Position.FIRST);
-                } else {
-                    mSelectedDrawable.setPosition(SelectedDrawable.Position.MIDDLE);
-                }
-                final Rect rect = mSelectedDrawable.getRect();
-                rect.set(selected.getLeft(), selected.getTop(), selected.getRight(), selected.getBottom());
-                mSelectedDrawable.draw(canvas);
-                break;
+                selected.setBackground(mSelectedDrawable);
+            } else {
+                selected.setBackground(mUnSelectedDrawable);
             }
+            //province
+            if (selected == mFieldViewGroup.getFieldAt(0)) {
+                if (selected.getVisibility() == View.VISIBLE && selected.isSelected()) {
+                    if (mProvinceSelectedDrawable != null) {
+                        selected.setBackground(mProvinceSelectedDrawable);
+                    }
+                } else {
+                    if (mProvinceUnSelectedDrawable != null) {
+                        selected.setBackground(mProvinceUnSelectedDrawable);
+                    }
+                }
+            }
+
+            //energy
+            if (selected == mFieldViewGroup.getFieldAt(7)) {
+                if (selected.getVisibility() == View.VISIBLE && selected.isSelected()) {
+                    if (mEnergySelectedDrawable != null) {
+                        selected.setBackground(mEnergySelectedDrawable);
+                    }
+                } else {
+                    if (mEnergyUnSelectedDrawable != null) {
+                        selected.setBackground(mEnergyUnSelectedDrawable);
+                    }
+                }
+            }
+
         }
     }
 

@@ -12,7 +12,6 @@
     <style name="PWKInputViewStyle_MIXED" parent="PWKInputViewBaseStyle">
         <item name="android:background">@drawable/pwk_input_item_border_gray</item>
         <item name="android:divider">@drawable/pwk_input_divider_line</item>
-        <item name="pwkSelectedDrawable">cn.qingsong.car.keyboardlibrary.view.SelectedDrawable</item>
     </style>
     <!--输入框整体样式-->
     <style name="PWKInputViewStyle" parent="PWKInputViewStyle_MIXED" />
@@ -25,22 +24,4 @@
         <item name="android:layout_marginRight">0.5dp</item>
         <item name="android:orientation">vertical</item>
     </style>
-
-    <style name="myInputView.upside">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">22dp</item>
-        <item name="android:textSize">9sp</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="myInputView.underpart">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginTop">2dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/color_333</item>
-        <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/car_bg_selector</item>
-    </style>
-
 </resources>

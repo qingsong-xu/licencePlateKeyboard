@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="pwkInputStyle" format="reference"/>
+    <attr name="pwkInputStyle" format="reference" />
     <!--输入框字体大小-->
     <declare-styleable name="InputView">
-        <attr name="pwkInputTextSize" format="dimension"/>
-        <attr name="pwkSelectedDrawable" format="string"/>
-        <attr name="pwkItemBorderSelectedColor" format="color|reference"/>
+        <attr name="pwkInputTextSize" format="dimension" />
+        <!--        item框通用样式-->
+        <attr name="pwkItemSelectedDrawable" format="reference" />
+        <attr name="pwkItemUnSelectedDrawable" format="reference" />
+        <!--        省份特别样式-->
+        <attr name="pwkProvinceSelectedDrawable" format="reference" />
+        <attr name="pwkProvinceUnSelectedDrawable" format="reference" />
+        <!--        新能源框样式-->
+        <attr name="pwkEnergySelectedDrawable" format="reference" />
+        <attr name="pwkEnergyUnSelectedDrawable" format="reference" />
+        <!--        新能源头部label可见性-->
+        <attr name="pwkEnergyLabelVisible" format="enum">
+            <enum name="gone" value="0" />
+            <enum name="visible" value="1" />
+        </attr>
+        <attr name="pwkItemPadding" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="KeyboardView">
-        <attr name="pwkBubbleColor" format="color|reference"/>
-        <attr name="pwkOKKeyColor" format="color|reference"/>
+        <attr name="pwkBubbleColor" format="color|reference" />
+        <attr name="pwkOKKeyColor" format="color|reference" />
     </declare-styleable>
 </resources>

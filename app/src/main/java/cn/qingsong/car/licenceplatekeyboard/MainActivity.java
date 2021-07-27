@@ -19,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.showDialog)
     Button showDialog;
 
-    @BindView(R.id.inputView)
-    InputView inputView;
+//    @BindView(R.id.inputView)
+//    InputView inputView;
+
+    @BindView(R.id.inputView1)
+    InputView inputView1;
 
     private MyDialog dialog;
 
@@ -29,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initView();
+//        initView(inputView);
+        initView(inputView1);
     }
 
     /**
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "myDialog");
     }
 
-    private void initView() {
+    private void initView(InputView inputView) {
         // 创建弹出键盘
         final PopupKeyboard mPopupKeyboard = new PopupKeyboard(this);
         // 弹出键盘内部包含一个KeyboardView，在此绑定输入两者关联。

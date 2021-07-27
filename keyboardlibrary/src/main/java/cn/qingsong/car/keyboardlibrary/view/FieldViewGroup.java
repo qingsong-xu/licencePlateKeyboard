@@ -1,10 +1,15 @@
 package cn.qingsong.car.keyboardlibrary.view;
 
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +92,6 @@ abstract class FieldViewGroup {
         if (mFieldViews[7].getVisibility() != View.VISIBLE) {
             return false;
         }
-        mFieldViews[7].getRootView().findViewById(R.id.llEnergy).setVisibility(View.GONE);
         mFieldViews[7].setText(null);
         return true;
     }
@@ -96,9 +100,35 @@ abstract class FieldViewGroup {
         if (mFieldViews[7].getVisibility() == View.VISIBLE) {
             return false;
         }
-        mFieldViews[7].getRootView().findViewById(R.id.llEnergy).setVisibility(View.VISIBLE);
         mFieldViews[7].setText(null);
         return true;
+    }
+
+    //设置间距
+    public void setHorizontalPadding(float padding) {
+        int halfPadding = (int) (padding + 0.5f);
+        for (int i = 0; i < mFieldViews.length; i++) {
+            TextView textView = mFieldViews[i];
+            ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) textView.getLayoutParams();
+            //第一个省份
+            if (i == 0) {
+                lp.leftMargin = 0;
+                lp.topMargin = 0;
+                lp.rightMargin = halfPadding;
+                lp.bottomMargin = 0;
+            } else if (i == 7) {
+                lp.leftMargin = halfPadding;
+                lp.topMargin = 0;
+                lp.rightMargin = 0;
+                lp.bottomMargin = 0;
+            } else {
+                lp.leftMargin = halfPadding;
+                lp.topMargin = 0;
+                lp.rightMargin = halfPadding;
+                lp.bottomMargin = 0;
+            }
+            textView.setLayoutParams(lp);
+        }
     }
 
     public TextView getLastField() {
@@ -184,5 +214,17 @@ abstract class FieldViewGroup {
         for (TextView field : mFieldViews) {
             field.setOnClickListener(listener);
         }
+    }
+
+    /**
+     * 返回长度
+     *
+     * @return
+     */
+    public int getCount() {
+        if (mFieldViews != null) {
+            return mFieldViews.length;
+        }
+        return 0;
     }
 }
