@@ -4,15 +4,18 @@
     <!--输入框字体大小-->
     <declare-styleable name="InputView">
         <attr name="pwkInputTextSize" format="dimension" />
+        <attr name="pwkInputTextColor" format="reference|color" />
         <!--        item框通用样式-->
         <attr name="pwkItemSelectedDrawable" format="reference" />
         <attr name="pwkItemUnSelectedDrawable" format="reference" />
         <!--        省份特别样式-->
         <attr name="pwkProvinceSelectedDrawable" format="reference" />
         <attr name="pwkProvinceUnSelectedDrawable" format="reference" />
+        <attr name="pwkProvinceTextColor" format="color|reference" />
         <!--        新能源框样式-->
         <attr name="pwkEnergySelectedDrawable" format="reference" />
         <attr name="pwkEnergyUnSelectedDrawable" format="reference" />
+        <attr name="pwkEnergyTextColor" format="reference|color" />
         <!--        新能源头部label可见性-->
         <attr name="pwkEnergyLabelVisible" format="enum">
             <enum name="gone" value="0" />

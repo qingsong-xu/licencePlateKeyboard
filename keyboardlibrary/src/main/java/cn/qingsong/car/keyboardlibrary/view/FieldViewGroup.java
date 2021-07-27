@@ -131,6 +131,39 @@ abstract class FieldViewGroup {
         }
     }
 
+    /**
+     * 设置统一字体颜色
+     *
+     * @param color
+     */
+    public void setTextColor(int color) {
+        for (int i = 0; i < mFieldViews.length; i++) {
+            mFieldViews[i].setTextColor(color);
+        }
+    }
+
+    /**
+     * 设置省份字体颜色
+     *
+     * @param color
+     */
+    public void setProvinceTextColor(int color) {
+        if (mFieldViews[0] != null) {
+            mFieldViews[0].setTextColor(color);
+        }
+    }
+
+    /**
+     * 设置新能源字体颜色
+     *
+     * @param color
+     */
+    public void setEnergyTextColor(int color) {
+        if (mFieldViews[7] != null) {
+            mFieldViews[7].setTextColor(color);
+        }
+    }
+
     public TextView getLastField() {
         if (mFieldViews[7].getVisibility() == View.VISIBLE) {
             return mFieldViews[7];

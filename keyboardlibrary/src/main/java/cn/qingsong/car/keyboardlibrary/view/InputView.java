@@ -97,6 +97,9 @@ public class InputView extends ConstraintLayout {
     private void onInited(Context context, AttributeSet attrs, int defStyleAttr) {
         final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.InputView, defStyleAttr, 0);
         final float textSize = ta.getDimension(R.styleable.InputView_pwkInputTextSize, 9);
+        int textColor = ta.getColor(R.styleable.InputView_pwkInputTextColor, Color.parseColor("#333333"));
+        int provinceTextColor = ta.getColor(R.styleable.InputView_pwkProvinceTextColor, textColor);
+        int energyTextColor = ta.getColor(R.styleable.InputView_pwkInputTextColor, textColor);
         //
         mSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkItemSelectedDrawable);
         mUnSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkItemUnSelectedDrawable);
@@ -121,6 +124,10 @@ public class InputView extends ConstraintLayout {
         mFieldViewGroup.changeTo8Fields();
         //
         mFieldViewGroup.setHorizontalPadding(padding);
+        //设置字体颜色
+        mFieldViewGroup.setTextColor(textColor);
+        mFieldViewGroup.setProvinceTextColor(provinceTextColor);
+        mFieldViewGroup.setEnergyTextColor(energyTextColor);
     }
 
     /**
