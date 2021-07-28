@@ -2,9 +2,12 @@ package cn.qingsong.car.keyboardlibrary.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils;
@@ -30,7 +33,7 @@ import cn.qingsong.car.keyboardlibrary.R;
  * @author 陈哈哈 (yoojiachen@gmail.com)
  */
 public class InputView extends ConstraintLayout {
-
+    private static final String NAME_SPACE = "http://schemas.android.com/apk/res/android";
     private static final String TAG = InputView.class.getName();
     private TextView energyLabel;
 
@@ -59,6 +62,20 @@ public class InputView extends ConstraintLayout {
         }
     };
 
+    /**
+     * 主动设置焦点
+     */
+    public void setFocusToInput() {
+        final TextView field = mFieldViewGroup.getFirstEmptyField();
+        final ClickMeta clickMeta = getClickMeta(field);
+        Log.d(TAG, "设置点击信息: " + clickMeta);
+        setFieldViewSelected(field);
+        // 触发选中事件
+        for (OnFieldViewSelectedListener listener : mOnFieldViewSelectedListeners) {
+            listener.onSelectedAt(clickMeta.clickIndex);
+        }
+    }
+
     @Nullable
     private Drawable mSelectedDrawable;
     @Nullable
@@ -83,7 +100,13 @@ public class InputView extends ConstraintLayout {
         super(context, attrs, defStyleAttr);
 
         inflate(context, R.layout.pwk_input_view, this);
-        setBackgroundColor(Color.parseColor("#00000000"));
+        int backGround = attrs.getAttributeResourceValue(NAME_SPACE, "background", -1);
+        //background包括color和Drawable,这里分开取值
+        if (backGround != -1) {
+            setBackgroundResource(backGround);
+        } else {
+            setBackgroundColor(Color.parseColor("#00000000"));
+        }
         mFieldViewGroup = new FieldViewGroup() {
             @Override
             protected TextView findViewById(int id) {
