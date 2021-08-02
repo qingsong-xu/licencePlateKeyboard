@@ -5,6 +5,10 @@
     <declare-styleable name="InputView">
         <attr name="pwkInputTextSize" format="dimension" />
         <attr name="pwkInputTextColor" format="reference|color" />
+        <attr name="pwkDotVisible" format="enum">
+            <enum name="gone" value="0" />
+            <enum name="visible" value="1" />
+        </attr>
         <!--        item框通用样式-->
         <attr name="pwkItemSelectedDrawable" format="reference" />
         <attr name="pwkItemUnSelectedDrawable" format="reference" />

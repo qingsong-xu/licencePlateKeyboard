@@ -36,6 +36,7 @@ public class InputView extends ConstraintLayout {
     private static final String NAME_SPACE = "http://schemas.android.com/apk/res/android";
     private static final String TAG = InputView.class.getName();
     private TextView energyLabel;
+    private LinearLayout dotContainer;
 
     private static final String KEY_INIT_NUMBER = "pwk.keyboard.key:init.number";
 
@@ -91,6 +92,7 @@ public class InputView extends ConstraintLayout {
 
     private float padding;
     private int labelVisible;
+    private int dotVisible;
 
     public InputView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, R.attr.pwkInputStyle);
@@ -114,6 +116,7 @@ public class InputView extends ConstraintLayout {
             }
         };
         energyLabel = findViewById(R.id.tvEnergyLabel);
+        dotContainer = findViewById(R.id.llDot);
         onInited(context, attrs, defStyleAttr);
     }
 
@@ -134,7 +137,14 @@ public class InputView extends ConstraintLayout {
         mEnergyUnSelectedDrawable = ta.getDrawable(R.styleable.InputView_pwkEnergyUnSelectedDrawable);
         padding = ta.getDimension(R.styleable.InputView_pwkItemPadding, 0);
         labelVisible = ta.getInt(R.styleable.InputView_pwkEnergyLabelVisible, 0);
+        dotVisible = ta.getInt(R.styleable.InputView_pwkDotVisible, 0);
         ta.recycle();
+        //
+        if (dotVisible == 0) {
+            dotContainer.setVisibility(GONE);
+        } else {
+            dotContainer.setVisibility(VISIBLE);
+        }
         //
         if (labelVisible == 0) {
             energyLabel.setVisibility(GONE);
